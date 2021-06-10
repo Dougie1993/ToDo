@@ -1,4 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { List } from 'src/app/interface/list.interface';
 import { TaskService } from 'src/app/task.service';
 
 @Component({
@@ -10,17 +12,18 @@ export class NewListComponent implements OnInit {
 
   // @ViewChild('ListTitleInput', {static: false}) input: ElementRef<HTMLInputElement>;
 
-  constructor(private taskservice: TaskService) { }
+  constructor(private taskservice: TaskService, private router: Router) { }
 
   ngOnInit() {
   }
 
   createList(title: string) {
-    this.taskservice.createList(title).subscribe((response: any) => {
+    this.taskservice.createList(title).subscribe((response: List) => {
       console.log(response);
+      this.router.navigate(['/list', response._id])
     })
     // Now we navigate to lists/response._id
-
+    
     // console.log(this.input.nativeElement.value);
     // this.input.nativeElement.value = "";
   }
