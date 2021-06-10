@@ -11,6 +11,7 @@ export class TaskViewComponent implements OnInit {
 
   lists : any[];
   tasks : any[];
+  list : any;
 
   constructor(private taskservice: TaskService, private route: ActivatedRoute) { }
 

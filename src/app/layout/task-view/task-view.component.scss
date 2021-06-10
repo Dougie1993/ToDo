@@ -22,6 +22,7 @@
 
 .task-list-container {
     display: flex;
+    position: relative;
     flex-direction: column;
     flex-grow: 1;
     padding: 42px;
@@ -82,4 +83,13 @@
         text-decoration: line-through;
         opacity: 80%;
     }
+}
+
+.circle-add-button {
+    height: 50px;
+    width: 50px;
+    bottom: 30px;
+    right: 30px;
+    position: absolute;
+    border-radius: 50%;// round button
 }

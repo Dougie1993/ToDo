@@ -20,4 +20,8 @@ export class TaskService {
   getTasks(listId: String) {
     return this.webReqService.get(`lists/${listId}/tasks`);
   }
+
+  deleteList(listId: string) {
+    return this.webReqService.delete(`lists/${listId}`);
+  }
 }
