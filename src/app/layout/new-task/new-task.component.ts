@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { relative } from 'path';
 import { Task } from 'src/app/interface/task.interface';
 import { TaskService } from 'src/app/task.service';
 
@@ -23,7 +22,6 @@ export class NewTaskComponent implements OnInit {
 
   createTask(title: string ) {
     this.taskservice.createTask(title, this.listId).subscribe((newTask: Task) => {
-      console.log(newTask);
       this.router.navigate(['../'], {relativeTo: this.route}); //ging back on one subroute
     })
   }
