@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { LoginComponent } from './layout/login/login.component';
 import { NewListComponent } from './layout/new-list/new-list.component';
 import { NewTaskComponent } from './layout/new-task/new-task.component';
 import { TaskViewComponent } from './layout/task-view/task-view.component';
@@ -8,6 +9,7 @@ import { TaskViewComponent } from './layout/task-view/task-view.component';
 const routes: Routes = [
   { path: '', redirectTo: 'lists', pathMatch: 'full' },
   { path: 'new-list', component: NewListComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'lists', component: TaskViewComponent },
   { path: 'lists/:listId', component: TaskViewComponent },
   { path: 'lists/:listId/new-task', component: NewTaskComponent } // this is to get the list from the url
