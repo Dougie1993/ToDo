@@ -4,23 +4,21 @@ import { AuthService } from 'src/app/auth.service';
 import { Login } from 'src/app/interface/login.interface';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-sign-up',
+  templateUrl: './sign-up.component.html',
+  styleUrls: ['./sign-up.component.scss']
 })
-export class LoginComponent implements OnInit {
-
+export class SignUpComponent implements OnInit {
   credentials : Login = {
     email : '',
-    password : ''
-  };
-
+    password: ''
+  }
   constructor(private auth: AuthService) { }
 
   ngOnInit() {
   }
 
-  onLogin (email: string, password: string) {
+  onSignUp (email: string, password: string) {
     console.log(email);
     if(email) {
       this.credentials.email = email;
@@ -29,10 +27,11 @@ export class LoginComponent implements OnInit {
       this.credentials.password = password
     }
     if (this.credentials) {
-      this.auth.login(this.credentials).subscribe((res: HttpResponse<any>) => {
+      this.auth.signUp(this.credentials).subscribe((res: HttpResponse<any>) => {
         console.log(res);
       });
     }
 
   }
+
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
+import { Login } from './interface/login.interface';
 @Injectable({
   providedIn: 'root'
 })
@@ -23,5 +24,17 @@ export class WebRequestService {
 
   delete(url: string) {
     return this.http.delete(`${this.RootUrl}/${url}`);
+  }
+
+  login (credentials: Login) {
+    let email = credentials.email;
+    let password = credentials.password;
+    return this.http.post(`${this.RootUrl}/users/login`, { email, password }, { observe: 'response' });
+  }
+
+  signUp (credentials: Login) {
+    let email = credentials.email;
+    let password = credentials.password;
+    return this.http.post(`${this.RootUrl}/users`,  credentials , { observe: 'response' });
   }
 }
