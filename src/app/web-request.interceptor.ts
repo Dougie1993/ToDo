@@ -1,6 +1,6 @@
 import { HttpErrorResponse, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { empty, Observable, throwError } from 'rxjs';
+import { empty, Observable, Subject, throwError } from 'rxjs';
 import { catchError,switchMap,tap } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 
@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
 })
 export class WebRequestInterceptor implements HttpInterceptor {
   refreshingAccessToken: boolean;
-
+  accessTokenRefreshed: Subject<any> = new Subject();
   constructor(private auth: AuthService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<any> {
@@ -19,7 +19,7 @@ export class WebRequestInterceptor implements HttpInterceptor {
     // Call next and handle response
     return next.handle(req).pipe(
       catchError((err: HttpErrorResponse) => {
-        if(err.status === 401 && !this.refreshingAccessToken) {
+        if(err.status === 401) {
           // unauthorized
 
           // 1st try and get a new access token before logging out
@@ -42,14 +42,26 @@ export class WebRequestInterceptor implements HttpInterceptor {
   }
 
   refreshAccessToken() {
-    this.refreshingAccessToken = true;
+    if (this.refreshingAccessToken) {
+      return new Observable(observer => {
+        this.accessTokenRefreshed.subscribe(() => {
+          // this code will run when the access token has refreshed
+          observer.next();
+          observer.complete();
+        })
+      })
+    } else {
+      this.refreshingAccessToken = true;
     // call method in auth service to refresh access token
-    return this.auth.getNewAccessToken().pipe(
+      return this.auth.getNewAccessToken().pipe(
       tap(() => {
         console.log('Access token refreshed');
         this.refreshingAccessToken = false;
+        this.accessTokenRefreshed.next(); //force the subject to rerun again
       })
     )
+    }
+    
   }
   
   addAuthHeader(request: HttpRequest<any>) {

@@ -10,6 +10,8 @@ import { NewTaskComponent } from './layout/new-task/new-task.component';
 import { LoginComponent } from './layout/login/login.component';
 import { WebRequestInterceptor } from './web-request.interceptor';
 import { SignUpComponent } from './layout/sign-up/sign-up.component';
+import { EditListComponent } from './layout/edit-list/edit-list.component';
+import { EditTaskComponent } from './layout/edit-task/edit-task.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { SignUpComponent } from './layout/sign-up/sign-up.component';
     NewListComponent,
     NewTaskComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    EditListComponent,
+    EditTaskComponent
   ],
   imports: [
     BrowserModule,

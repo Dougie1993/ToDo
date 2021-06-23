@@ -23,7 +23,7 @@ export class WebRequestService {
   }
 
   delete(url: string) {
-    return this.http.delete(`${this.RootUrl}/${url}`);
+    return this.http.delete(`${this.RootUrl}/${url}`, {observe: 'response'});
   }
 
   login (credentials: Login) {
@@ -33,8 +33,6 @@ export class WebRequestService {
   }
 
   signUp (credentials: Login) {
-    let email = credentials.email;
-    let password = credentials.password;
     return this.http.post(`${this.RootUrl}/users`,  credentials , { observe: 'response' });
   }
 }

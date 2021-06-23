@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { EditListComponent } from './layout/edit-list/edit-list.component';
+import { EditTaskComponent } from './layout/edit-task/edit-task.component';
 import { LoginComponent } from './layout/login/login.component';
 import { NewListComponent } from './layout/new-list/new-list.component';
 import { NewTaskComponent } from './layout/new-task/new-task.component';
@@ -15,7 +17,9 @@ const routes: Routes = [
   { path: 'lists/:listId', component: TaskViewComponent },
   { path: 'lists/:listId/new-task', component: NewTaskComponent }, // this is to get the list from the url
                                                                     // very useful when target a specific objects contents
-  { path: 'sign-up', component: SignUpComponent}
+  { path: 'sign-up', component: SignUpComponent},
+  { path: 'edit-list/:listId', component: EditListComponent},
+  { path: 'edit-task/:listId/task/:taskId', component: EditTaskComponent}
 ];
 
 @NgModule({
