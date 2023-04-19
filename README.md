@@ -7,6 +7,14 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - Working with Bulma for fonts 
 - Git Connection 
 
+## how to install
+
+- Clone project
+- npm i @angular/core@8.2.14
+- npm install --save-dev --legacy-peer-deps @angular/cli@8.3.29
+- npx ng serve
+
+
 
 ## Development server
 
